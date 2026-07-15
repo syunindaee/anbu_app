@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../auth/parent_phone_page.dart';
 import '../child/child_home_page.dart';
 import '../parent/parent_home_page.dart';
 
@@ -60,7 +60,7 @@ class OnboardingPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const ParentHomePage(),
+                        builder: (_) => const ParentPhonePage(),
                       ),
                     );
                   },

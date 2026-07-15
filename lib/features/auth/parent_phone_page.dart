@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ParentPhonePage extends StatelessWidget {
+class ParentPhonePage extends StatefulWidget {
   const ParentPhonePage({super.key});
+
+  @override
+  State<ParentPhonePage> createState() => _ParentPhonePageState();
+}
+
+class _ParentPhonePageState extends State<ParentPhonePage> {
+  final TextEditingController _phoneController = TextEditingController();
+  bool _isValid=false;  
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +50,15 @@ class ParentPhonePage extends StatelessWidget {
 
             const SizedBox(height: 40),
 
-            const TextField(
+            TextField(
+              controller: _phoneController,
               keyboardType: TextInputType.phone,
-              decoration: InputDecoration(
+              onChanged: (value) {
+                setState(() {
+                  _isValid = value.replaceAll('-', '').length==11;
+                });
+              },
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: '010-1234-5678',
               ),
@@ -51,7 +70,15 @@ class ParentPhonePage extends StatelessWidget {
               width: double.infinity,
               height: 60,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: _isValid
+                    ? () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('다음 단계로 이동합니다.'),
+                          ),
+                        );
+                     }
+                    : null,
                 child: const Text(
                   '다음',
                   style: TextStyle(fontSize: 22),
