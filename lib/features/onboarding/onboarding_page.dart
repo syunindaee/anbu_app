@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../parent/parent_home_page.dart';
 import '../child/child_home_page.dart';
+import '../parent/parent_home_page.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -9,32 +9,53 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xffF8FAFC),
       body: SafeArea(
-        child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
+              const Spacer(),
+
+              const Icon(
+                Icons.favorite,
+                color: Colors.red,
+                size: 70,
+              ),
+
+              const SizedBox(height: 20),
+
               const Text(
-                '안부',
+                "안부",
                 style: TextStyle(
                   fontSize: 42,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 20),
+
+              const SizedBox(height: 12),
 
               const Text(
-                '안녕하세요 😊',
-                style: TextStyle(fontSize: 24),
+                "AI가 부모님의 일상을\n함께합니다.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 22,
+                  color: Colors.black54,
+                ),
               ),
 
-              const SizedBox(height: 60),
+              const Spacer(),
 
               SizedBox(
-                width: 250,
-                height: 60,
-                child: ElevatedButton(
+                width: double.infinity,
+                height: 70,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.elderly, size: 30),
+                  label: const Text(
+                    "부모님입니다",
+                    style: TextStyle(fontSize: 24),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -43,19 +64,20 @@ class OnboardingPage extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text(
-                    '👵 부모님',
-                    style: TextStyle(fontSize: 22),
-                  ),
                 ),
               ),
 
               const SizedBox(height: 20),
 
               SizedBox(
-                width: 250,
-                height: 60,
-                child: ElevatedButton(
+                width: double.infinity,
+                height: 70,
+                child: ElevatedButton.icon(
+                  icon: const Icon(Icons.family_restroom, size: 30),
+                  label: const Text(
+                    "자녀입니다",
+                    style: TextStyle(fontSize: 24),
+                  ),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -64,12 +86,10 @@ class OnboardingPage extends StatelessWidget {
                       ),
                     );
                   },
-                  child: const Text(
-                    '👨‍👩‍👧 자녀',
-                    style: TextStyle(fontSize: 22),
-                  ),
                 ),
               ),
+
+              const SizedBox(height: 60),
             ],
           ),
         ),
